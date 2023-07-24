@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    font-family: 'Inter', sans-serif;
+    
+}
+
+$theme-colors: (
+    "light":      #f2e0f9,
+    "dark":       #251738,
+    "primary":    #8350e2d8,
+    "secondary":  #7546ced8,
+    "info":       #6339b1d8,
+    "success":    #11e7cb,
+    "warning":    #f3740c,
+    "danger":     #d30000,
+);
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+$color: #0cf;
+
+.btn {
+  border: none;
+  display: inline-block;
+  padding: .75rem 1.25rem;
+  border-radius: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($color, 15%);
+    transition: all .3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}
+

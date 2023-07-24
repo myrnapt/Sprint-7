@@ -4,25 +4,16 @@ import { AppService } from '../app.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styles: ['.welcome { text-align: center; }']
+  styleUrls: ['./home.components.scss']
 
 })
 export class HomeComponent {
+
+  show: boolean = false
+  showInputs() {
+    this.show = true
+  }
+
   constructor(private mainService: AppService) {}
 
-  get home(): boolean {
-    return this.mainService.showHome;
-  }
-
-  get calculator(): boolean {
-    return this.mainService.calculator;
-  }
-
-  hideHome(): void {
-    this.mainService.hideHomePage();
-  }
-
-  showCalculator(): void {
-    this.mainService.showCalculator();
-  }
 }

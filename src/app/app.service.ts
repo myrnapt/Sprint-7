@@ -5,17 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
 
-  showHome = true
-  calculator = false
-
-  hideHomePage() {
-     this.showHome = false
-  }
-
-  showCalculator() {
-    this.calculator = true
-
-  }
 constructor() { }
 
 }

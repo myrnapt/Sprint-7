@@ -1,0 +1,41 @@
+body {
+ margin: auto;
+ width: fit-content;
+}
+
+
+b {
+    font-size: x-large;
+}
+
+.list-group-item {
+    border: 1px none black;
+    margin-bottom: 10px;
+    width: 450px;
+    height: 80px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 2px 10px rgb(167, 153, 173);
+}
+
+.checkbox-xl {
+    top: .8rem;
+    scale: 1.4;
+    margin-right: 0.7rem;
+    margin-left: 20px;
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.btn :hover {
+    background-color: black !important;
+}
