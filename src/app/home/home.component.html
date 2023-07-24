@@ -1,16 +1,4 @@
-<!-- Pantalla de bienvenida -->
-  <div  [ngStyle]="{ 'display': home ? 'block' : 'none' }" id="homePage" class="text-center" style="margin-top: 10%;">
-    <h1>Bienvenido al creador de presupuestos</h1>
-    <img src="/Sprint-7/src/assets/Ilu.png" alt="A man with a calculator" style="display:inline-block"> <br>
-    <button  (click)="hideHome(); showCalculator()" id="startButton" class="btn btn-primary">Comenzar</button>
-  </div>
-
-<!-- Contenido principal -->
-
-<div id="contenido" [ngStyle]="{ 'display': calculator ? 'block' : 'none' }">
-  <div class="row">
-      <!-- Columna izquierda -->
-      <div class="col-md-6">
+<div>
         <h3> Crea tu presupuesto </h3>
         <p> Selecciona los servicios necesarios: </p>
         <div class="form-check">
@@ -48,5 +36,7 @@
         </div>
         <p>El precio total de este presupuesto es </p>
         <button id="enviarBtn" class="btn btn-primary"> Guardar </button>
-        <button id="regresarBtn" class="btn btn-secondary" style="position: absolute;top: 95%; left: 10px;"> <-- Regresar a home</button>
-    </div>
+        <button routerLink="" class="btn btn-secondary" style="position: absolute;top: 95%; left: 10px;"> <-- Regresar a home</button>
+      </div>
+
+<app-budget-list></app-budget-list>

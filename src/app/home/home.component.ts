@@ -4,7 +4,8 @@ import { AppService } from '../app.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styles: ['.welcome { text-align: center; }']
+
 })
 export class HomeComponent {
   constructor(private mainService: AppService) {}
