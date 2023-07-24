@@ -1,8 +1,7 @@
 body {
- margin: auto;
- width: fit-content;
+    margin: auto;
+    width: fit-content;
 }
-
 
 b {
     font-size: x-large;
@@ -11,8 +10,6 @@ b {
 .list-group-item {
     border: 1px none black;
     margin-bottom: 10px;
-    width: 450px;
-    height: 80px;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -38,4 +35,35 @@ b {
 
 .btn :hover {
     background-color: black !important;
+}
+
+.btn1 {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(247, 123, 66);
+    border-radius: 20px;
+    border: none;
+    font-weight: bolder;
+    color: white;
+}
+
+#card {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 450px;
+    border-radius: 15px;
+    padding: 5%;
+    background-color: rgb(196, 238, 255);
+}
+
+.form-control2 {
+    border: none;
+    border-radius: 15px;
+    width: 50px;
+    text-align: center;
 }

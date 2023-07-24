@@ -15,8 +15,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BudgetListComponent,
       WelcomeComponent
    ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, 
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
