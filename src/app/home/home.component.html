@@ -1,54 +1,85 @@
 <body>
-  <h3 class="mt-5 mb-3"> Nuevo presupuesto </h3>
-  
-  <!-- FORMULARIO -->
-  <h5> <i>Informacion del cliente:</i>  </h5>
-  <div id="formulario">
+  <h3 class="mt-5 mb-3"><u> Nuevo presupuesto </u></h3>
+  <h5><i>Información del cliente:</i></h5>
+  <form (ngSubmit)="onSubmit()" >
     <div class="form-floating mb-3 mt-3">
-      <input type="text" class="form-control" id="floatingInput">
+      <input
+      
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        name="budgetName"
+        [(ngModel)]="budget.budgetName"
+      />
       <label for="floatingInput">Nombre del presupuesto</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        name="clientName"
+        [(ngModel)]="budget.clientName"
+      />
       <label for="floatingInput">Nombre del cliente</label>
     </div>
-  </div>
-  <h5 class="mt-4"> <i>Servicios a contratar: </i>  </h5>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <label class="form-check-label" for="firstCheckbox"> Creación de página web <br><b>500€</b> </label>
-      <input class="form-check-input checkbox-xl " type="checkbox" value="" id="firstCheckbox">
-    </li>
-
-    <div id="formulario" class="container">
-      <div id="card">
-        <label for="pageNumber"> Numero de páginas: </label>
-        <button class="btn1"> + </button>
-        <input type="text" id="pageNumber" class="form-control2 mb-2 " placeholder="1">
-        <button class="btn1"> - </button>
-      </div>
-      <div id="card">
-        <label for="pageNumber"> Numero de idiomas: </label>
-        <button class="btn1"> + </button>
-        <input type="text" id="pageNumber" class="form-control2 mb-2" placeholder="1">
-        <button class="btn1"> - </button>
-      </div>
-    </div>
     
-    <li class="list-group-item">
-      <label class="form-check-label" for="secondCheckbox"> Consultoría SEO <br><b>300€</b></label>
-      <input class="form-check-input checkbox-xl" type="checkbox" value="" id="secondCheckbox">
-    </li>
-    <li class="list-group-item ">
-      <label class="form-check-label" for="thirdCheckbox"> Campaña Google Ads <br><b>200€</b></label>
-      <input class="form-check-input checkbox-xl" type="checkbox" value="" id="thirdCheckbox">
-    </li>
-  </ul>
-  <p>El precio total de este presupuesto es <b> € </b> </p> 
-  <button id="enviarBtn" class="btn "> Guardar </button>
-  <!-- FORMULARIO END -->
-  
-  <button routerLink="" class="btn" style="position: absolute;top: 95%; left: 10px;"> Volver </button>
+    <h5><i> Servicios a contratar: </i></h5>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <label class="form-check-label" for="firstCheckbox">
+          Creación de página web <br /><b>500€</b>
+        </label>
+        <input
+          class="form-check-input checkbox-xl"
+          type="checkbox"
+          name="webPageService"
+          [(ngModel)]="budget.webPageService"
+          (ngModelChange)="showInputs(); sumPrice()"
+          />
+        </li>
+        <app-panel [hidden]="show"></app-panel>
+
+      
+      <li class="list-group-item">
+        <label class="form-check-label" for="secondCheckbox">
+          Consultoría SEO <br /><b>300€</b></label
+        >
+        <input
+          class="form-check-input checkbox-xl"
+          type="checkbox"
+          name="seoService"
+          [(ngModel)]="budget.seoService"
+          (ngModelChange)="sumPrice()"
+        />
+      </li>
+
+      <li class="list-group-item">
+        <label class="form-check-label" for="thirdCheckbox">
+          Campaña Google Ads <br /><b>200€</b></label
+        >
+        <input
+          class="form-check-input checkbox-xl"
+          type="checkbox"
+          name="googleAdsService"
+          [(ngModel)]="budget.googleAdsService"
+          (ngModelChange)="sumPrice()"
+        />
+      </li>
+    </ul>
+    <p>
+      El precio total de este presupuesto es <b> {{ budget.totalPrice }} € </b>
+    </p>
+    <button type="submit" class="btn">Guardar</button>
+  </form>
+
+  <button
+    routerLink=""
+    class="btn"
+    style="position: absolute; top: 95%; left: 10px"
+  >
+    Volver
+  </button>
   <!-- <app-budget-list></app-budget-list> -->
 </body>
-

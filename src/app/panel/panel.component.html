@@ -1,0 +1,23 @@
+<div id="formulario" class="container">
+  <div id="card">
+    <label for="pageNumber"> Número de páginas: </label>
+    <button class="btn1" (click)="service.increaseByPages(1)">+</button>
+    <input type="text" id="pageNumber" class="form-control2 mb-2"
+    placeholder="1" [value]="service.numPages">
+    <button class="btn1" (click)="service.increaseByPages(-1)">-</button>
+    <button class="btn2">i</button>
+  </div>
+  <div id="card">
+    <label for="languageNumber"> Número de idiomas: </label>
+    <button class="btn1" (click)="service.increaseByLanguages(1)">+</button>
+    <input
+      type="text"
+      id="languageNumber"
+      class="form-control2 mb-2"
+      placeholder="1"
+      [value]="service.numLanguage"
+    />
+    <button class="btn1" (click)="service.increaseByLanguages(-1)">-</button>
+    <button class="btn2">i</button>
+  </div>
+</div>
