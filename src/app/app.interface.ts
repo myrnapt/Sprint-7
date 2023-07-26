@@ -6,3 +6,9 @@ export interface Budget {
     googleAdsService: boolean
     totalPrice: number
 }
+
+export interface panelInfo {
+    numPages: number;
+    numLanguage: number;
+    totalPrice: number;
+}

@@ -9,6 +9,7 @@ import { Budget } from '../app.interface';
 
 })
 export class HomeComponent {
+
   show: boolean = true;
 
   showInputs() {
@@ -34,7 +35,7 @@ export class HomeComponent {
 
 
   sumPrice() {
-    this.totalPrice = 0; // Reset the total price before summing the selected services
+    this.totalPrice = 0; 
 
     if (this.budget.webPageService) {
       this.totalPrice += this.webPagePrice;
@@ -47,25 +48,34 @@ export class HomeComponent {
     if (this.budget.googleAdsService) {
       this.totalPrice += this.googleAdsPrice;
     }
-  
-    // Update the totalPrice property in the budget object
+
     this.budget.totalPrice = this.totalPrice;
   }
 
-  onSubmit(){
-    const newBudget = {...this.budget};
-    this.budgetList.push(newBudget);
-    this.budget = {
-      budgetName: '',
-      clientName: '',
-      webPageService: false,
-      seoService: false,
-      googleAdsService: false,
-      totalPrice: 0
-    };
-    console.log(this.budgetList);
+ onSubmit() {
+  const newBudget = { ...this.budget };
+  this.budgetList.push(newBudget);
+  this.budget = {
+    budgetName: '',
+    clientName: '',
+    webPageService: false,
+    seoService: false,
+    googleAdsService: false,
+    totalPrice: 0
+  };
+  console.log(this.budgetList);
+}
+
+  constructor(public service: AppService) {}
+
+  recibirFuncionDelHijo(): void {
+    this.service.panelCalculationEmitter.subscribe(() => {
+      this.panelCalculation(); 
+    });
   }
 
-  constructor(private mainService: AppService) {}
-
+  panelCalculation() {
+    let result = this.service.changeWebPricing();
+    console.log(result);
+  }
 }
