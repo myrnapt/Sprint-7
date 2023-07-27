@@ -1,15 +1,13 @@
 <body>
   <h3 class="mt-5 mb-3"><u> Nuevo presupuesto </u></h3>
   <h5><i>Información del cliente:</i></h5>
-  <form (ngSubmit)="onSubmit()" >
+  <form (ngSubmit)="service.onSubmit()" >
     <div class="form-floating mb-3 mt-3">
       <input
-      
         type="text"
         class="form-control"
-        id="floatingInput"
         name="budgetName"
-        [(ngModel)]="budget.budgetName"
+        [(ngModel)]="service.budget.budgetName"
       />
       <label for="floatingInput">Nombre del presupuesto</label>
     </div>
@@ -17,9 +15,8 @@
       <input
         type="text"
         class="form-control"
-        id="floatingInput"
         name="clientName"
-        [(ngModel)]="budget.clientName"
+        [(ngModel)]="service.budget.clientName"
       />
       <label for="floatingInput">Nombre del cliente</label>
     </div>
@@ -35,8 +32,8 @@
           class="form-check-input checkbox-xl"
           type="checkbox"
           name="webPageService"
-          [(ngModel)]="budget.webPageService"
-          (ngModelChange)="showInputs(); sumPrice()"
+          [(ngModel)]="service.budget.webPageService.active"
+          (ngModelChange)=" service.sumPrice(); showInputs();"
           />
         </li>
         <app-panel [hidden]="show"></app-panel>
@@ -50,8 +47,8 @@
           class="form-check-input checkbox-xl"
           type="checkbox"
           name="seoService"
-          [(ngModel)]="budget.seoService"
-          (ngModelChange)="sumPrice()"
+          [(ngModel)]="service.budget.seoService"
+          (ngModelChange)="service.sumPrice()"
         />
       </li>
 
@@ -63,13 +60,13 @@
           class="form-check-input checkbox-xl"
           type="checkbox"
           name="googleAdsService"
-          [(ngModel)]="budget.googleAdsService"
-          (ngModelChange)="sumPrice()"
+          [(ngModel)]="service.budget.googleAdsService"
+          (ngModelChange)="service.sumPrice()"
         />
       </li>
     </ul>
     <p>
-      El precio total de este presupuesto es <b> {{ budget.totalPrice }} € </b>
+      El precio total de este presupuesto es <b> {{ this.service.budget.webPageService.total + this.service.totalPrice }} € </b>
     </p>
     <button type="submit" class="btn">Guardar</button>
   </form>

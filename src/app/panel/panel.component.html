@@ -1,24 +1,24 @@
-<div id="formulario" class="container">
+<form class="container">
   <div id="card">
     <label for="pageNumber"> Número de páginas: </label>
-    <button class="btn1" (click)="service.increaseByPages(+1)">+</button>
-    <input type="text" id="pageNumber" class="form-control2 mb-2"
-    placeholder="1" [value]="service.panelInfo.numPages">
-    <button class="btn1" (click)="service.increaseByPages(-1)">-</button>
+    <button class="btn1" (click)="service.increaseByPages(+1); service.changeWebPricing()">+</button>
+    <input type="number" id="pageNumber" class="form-control2 mb-2"
+    placeholder="1" [value]="service.budget.webPageService.numPages">
+    <button class="btn1" (click)="service.increaseByPages(-1); service.changeWebPricing()">-</button>
     <button class='btn2' (click)="modalService.openModal()"> i </button>
   </div>
   <div id="card">
     <label for="languageNumber"> Número de idiomas: </label>
-    <button class="btn1" (click)="service.increaseByLanguages(+1)">+</button>
+    <button class="btn1" (click)="service.increaseByLanguages(+1); service.changeWebPricing()">+</button>
     <input
-      type="text"
+      type="number"
       id="languageNumber"
       class="form-control2 mb-2"
       placeholder="1"
-      [value]="service.panelInfo.numLanguage"
+      [value]="service.budget.webPageService.numLanguage"
     />
-    <button class="btn1" (click)="service.increaseByLanguages(-1)">-</button>
+    <button class="btn1" (click)="service.increaseByLanguages(-1); service.changeWebPricing()">-</button>
     <button class='btn2' > i </button>
     
   </div>
-</div>
+</form>

@@ -14,7 +14,7 @@ export class PanelComponent {
   constructor(public service: AppService, public modalService: AppService) { }
 
   openModal() {
-    this.modalService.openModal(); // Llama al método del servicio para abrir el modal
+    this.modalService.openModal();
   }
 
   

@@ -1,14 +1,13 @@
 export interface Budget {
     budgetName: string ;
     clientName: string;
-    webPageService: boolean;
+    webPageService: {
+        active: boolean;
+        numPages: number;
+        numLanguage: number;
+        total: number;
+    };
     seoService: boolean;
     googleAdsService: boolean
     totalPrice: number
-}
-
-export interface panelInfo {
-    numPages: number;
-    numLanguage: number;
-    totalPrice: number;
 }

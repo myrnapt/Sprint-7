@@ -1,37 +1,94 @@
-import { EventEmitter, Injectable  } from '@angular/core';
-import { panelInfo } from './app.interface';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Budget } from './app.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppService {
-  
   panelCalculationEmitter: EventEmitter<any> = new EventEmitter();
-
-  
-  panelInfo: panelInfo = {
-    numPages: 0,
-    numLanguage: 0,
-    totalPrice: 0,
-  }
-  
-  increaseByPages( value: number ) {
-    
-    this.panelInfo.numPages += value;
-    
-  }
-  increaseByLanguages( value: number ) {
-    this.panelInfo.numLanguage += value;
-    
-  }
-  changeWebPricing() : number {
-    return this.panelInfo.numLanguage * this.panelInfo.numPages * 30;
-
-  }
-
   constructor(private modalService: NgbModal) {}
-openModal() {
+
+  budget: Budget = {
+    budgetName: '',
+    clientName: '',
+    webPageService: {
+      active: false,
+      numPages: 1,
+      numLanguage: 1,
+      total: 0,
+    },
+    seoService: false,
+    googleAdsService: false,
+    totalPrice: 0,
+  };
+
+  budgetList: Budget[] = [];
+
+  listPrices: number[] = [0];
+  totalPrice: number = 0;
+  
+    increaseByPages(value: number) {
+      this.budget.webPageService.numPages += value;
+    }
+  
+    increaseByLanguages(value: number) {
+      this.budget.webPageService.numLanguage += value;
+    }
+  
+    changeWebPricing() {
+      if ( this.budget.webPageService.numPages === 1 &&
+        this.budget.webPageService.numLanguage === 1
+      ) { this.budget.webPageService.total = 500 } 
+      
+      else {  this.budget.webPageService.total = (
+          this.budget.webPageService.numLanguage *
+          this.budget.webPageService.numPages * 30);
+      }
+      console.log(this.budget.webPageService.total);
+    }
+
+  sumPrice() {
+
+    this.totalPrice = 0;
+
+    if (this.budget.webPageService.active) {
+      this.totalPrice += 500
+      this.totalPrice += (this.budget.webPageService.total);
+    }
+
+    if (this.budget.seoService) {
+      this.totalPrice += 300;
+    }
+
+    if (this.budget.googleAdsService) {
+      this.totalPrice += 200;
+    }
+
+    this.budget.totalPrice = this.totalPrice;
+    console.log(this.totalPrice);
+  }
+
+  onSubmit() {
+    const newBudget = { ...this.budget };
+    this.budgetList.push(newBudget);
+    this.budget = {
+      budgetName: '',
+      clientName: '',
+      webPageService: {
+        active: false,
+        numPages: 1,
+        numLanguage: 1,
+        total: 0,
+      },
+      seoService: false,
+      googleAdsService: false,
+      totalPrice: 0,
+    };
+    console.log(this.budgetList);
+  }
+
+  openModal() {
     // Aquí puedes definir el contenido del modal
     const modalContent = `
       <div class="modal-body">
@@ -43,16 +100,15 @@ openModal() {
       </div>
     `;
 
-    this.modalService.open(modalContent, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      (result) => {
-        console.log('Modal cerrado con resultado:', result);
-        // Aquí puedes agregar lógica adicional según lo que necesites hacer después de cerrar el modal.
-      },
-      (reason) => {
-        console.log('Modal despedido:', reason);
-        // Maneja cualquier error o razón por la que se haya despedido el modal, si es necesario.
-      }
-    );
+    this.modalService
+      .open(modalContent, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          console.log('Modal cerrado con resultado:', result);
+        },
+        (reason) => {
+          console.log('Modal despedido:', reason);
+        }
+      );
   }
-
 }
