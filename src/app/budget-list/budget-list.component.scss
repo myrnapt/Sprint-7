@@ -1,0 +1,15 @@
+.btn {
+    color: white;
+    font-size: smaller;
+    text-transform: lowercase;
+}
+
+.list-group-item {
+    border: 1px none black;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 2px 10px rgb(191, 199, 211);
+}

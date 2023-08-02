@@ -1,7 +1,17 @@
-<ng-template #content let-modal>
+<!-- button-->
+<span type="button" (click)="modal.open(infoModal)"> + </span>
+
+<!-- modal body -->
+<ng-template #infoModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"> Más información </h4>
+  </div>
   <div class="modal-body">
+    Selecciona el número deseado de idiomas y páginas para la web (mínimo una de cada).
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn" (click)="modal.close('Save click')">Ok</button>
+    <button type="button" class="btn" (click)="modal.close()">
+      OK
+    </button>
   </div>
 </ng-template>

@@ -6,9 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providedIn: 'root',
 })
 export class AppService {
-  panelCalculationEmitter: EventEmitter<any> = new EventEmitter();
-  constructor(private modalService: NgbModal) {}
-
+  // VARIABLES
   budget: Budget = {
     budgetName: '',
     clientName: '',
@@ -25,50 +23,48 @@ export class AppService {
 
   budgetList: Budget[] = [];
 
-  listPrices: number[] = [0];
-  totalPrice: number = 0;
-  
-    increaseByPages(value: number) {
-      this.budget.webPageService.numPages += value;
+  // PRICE CALCULATIONS
+  increaseByPages(value: number) {
+    this.budget.webPageService.numPages += value;
+  }
+
+  increaseByLanguages(value: number) {
+    this.budget.webPageService.numLanguage += value;
+  }
+
+  changeWebPricing() {
+    if (
+      this.budget.webPageService.numPages <= 1 &&
+      this.budget.webPageService.numLanguage <= 1
+    ) {
+      this.budget.webPageService.total = 0;
+    } else {
+      this.budget.webPageService.total =
+        this.budget.webPageService.numLanguage *
+        this.budget.webPageService.numPages *
+        30;
     }
-  
-    increaseByLanguages(value: number) {
-      this.budget.webPageService.numLanguage += value;
-    }
-  
-    changeWebPricing() {
-      if ( this.budget.webPageService.numPages === 1 &&
-        this.budget.webPageService.numLanguage === 1
-      ) { this.budget.webPageService.total = 500 } 
-      
-      else {  this.budget.webPageService.total = (
-          this.budget.webPageService.numLanguage *
-          this.budget.webPageService.numPages * 30);
-      }
-      console.log(this.budget.webPageService.total);
-    }
+    return this.budget.webPageService.total;
+  }
 
   sumPrice() {
-
-    this.totalPrice = 0;
+    this.budget.totalPrice = 0;
 
     if (this.budget.webPageService.active) {
-      this.totalPrice += 500
-      this.totalPrice += (this.budget.webPageService.total);
+      this.budget.totalPrice += 500;
+      this.budget.totalPrice += this.budget.webPageService.total;
     }
 
     if (this.budget.seoService) {
-      this.totalPrice += 300;
+      this.budget.totalPrice += 300;
     }
 
     if (this.budget.googleAdsService) {
-      this.totalPrice += 200;
+      this.budget.totalPrice += 200;
     }
-
-    this.budget.totalPrice = this.totalPrice;
-    console.log(this.totalPrice);
   }
 
+  // SEND FORM
   onSubmit() {
     const newBudget = { ...this.budget };
     this.budgetList.push(newBudget);
@@ -85,30 +81,9 @@ export class AppService {
       googleAdsService: false,
       totalPrice: 0,
     };
-    console.log(this.budgetList);
   }
 
-  openModal() {
-    // Aquí puedes definir el contenido del modal
-    const modalContent = `
-      <div class="modal-body">
-        <!-- Contenido del modal -->
-        <h4>Contenido del modal</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Cerrar</button>
-      </div>
-    `;
-
-    this.modalService
-      .open(modalContent, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          console.log('Modal cerrado con resultado:', result);
-        },
-        (reason) => {
-          console.log('Modal despedido:', reason);
-        }
-      );
+  getList(): Budget[] {
+    return this.budgetList;
   }
 }

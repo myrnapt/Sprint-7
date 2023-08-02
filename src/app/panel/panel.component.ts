@@ -11,12 +11,6 @@ export class PanelComponent {
   
   @Output() sendForm = new EventEmitter<any>();
   
-  constructor(public service: AppService, public modalService: AppService) { }
+  constructor(public service: AppService) { }
 
-  openModal() {
-    this.modalService.openModal();
-  }
-
-  
-  
 }

@@ -1,81 +1,93 @@
 <body>
-  <h3 class="mt-5 mb-3"><u> Nuevo presupuesto </u></h3>
-  <h5><i>Información del cliente:</i></h5>
-  <form (ngSubmit)="service.onSubmit()" >
-    <div class="form-floating mb-3 mt-3">
-      <input
-        type="text"
-        class="form-control"
-        name="budgetName"
-        [(ngModel)]="service.budget.budgetName"
-      />
-      <label for="floatingInput">Nombre del presupuesto</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        name="clientName"
-        [(ngModel)]="service.budget.clientName"
-      />
-      <label for="floatingInput">Nombre del cliente</label>
-    </div>
-    
-    <h5><i> Servicios a contratar: </i></h5>
+  <div class="row">
+    <div class="col-6 form">
+      <h3 class="mt-5 mb-3"><u> Nuevo presupuesto </u></h3>
+      <h5><i> Información del cliente: </i></h5>
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <label class="form-check-label" for="firstCheckbox">
-          Creación de página web <br /><b>500€</b>
-        </label>
-        <input
-          class="form-check-input checkbox-xl"
-          type="checkbox"
-          name="webPageService"
-          [(ngModel)]="service.budget.webPageService.active"
-          (ngModelChange)=" service.sumPrice(); showInputs();"
+      <form (ngSubmit)="this.service.onSubmit(); showInputs()">
+        <div class="form-floating mb-3 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            name="budgetName"
+            [(ngModel)]="service.budget.budgetName"
           />
-        </li>
-        <app-panel [hidden]="show"></app-panel>
+          <label for="floatingInput"> Nombre del presupuesto </label>
+        </div>
 
-      
-      <li class="list-group-item">
-        <label class="form-check-label" for="secondCheckbox">
-          Consultoría SEO <br /><b>300€</b></label
-        >
-        <input
-          class="form-check-input checkbox-xl"
-          type="checkbox"
-          name="seoService"
-          [(ngModel)]="service.budget.seoService"
-          (ngModelChange)="service.sumPrice()"
-        />
-      </li>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="clientName"
+            [(ngModel)]="service.budget.clientName"
+          />
+          <label for="floatingInput"> Nombre del cliente </label>
+        </div>
 
-      <li class="list-group-item">
-        <label class="form-check-label" for="thirdCheckbox">
-          Campaña Google Ads <br /><b>200€</b></label
-        >
-        <input
-          class="form-check-input checkbox-xl"
-          type="checkbox"
-          name="googleAdsService"
-          [(ngModel)]="service.budget.googleAdsService"
-          (ngModelChange)="service.sumPrice()"
-        />
-      </li>
-    </ul>
-    <p>
-      El precio total de este presupuesto es <b> {{ this.service.budget.webPageService.total + this.service.totalPrice }} € </b>
-    </p>
-    <button type="submit" class="btn">Guardar</button>
-  </form>
+        <h5><i> Servicios a contratar: </i></h5>
 
-  <button
-    routerLink=""
-    class="btn"
-    style="position: absolute; top: 95%; left: 10px;">
-    Volver
-  </button>
-  <!-- <app-budget-list></app-budget-list> -->
+        <ul class="list-group">
+          <li class="list-group-item">
+            <label for="firstCheckbox">
+              Creación de página web <br />
+              <b> 500€ </b>
+            </label>
+            <input
+              class="form-check-input checkbox-xl"
+              type="checkbox"
+              name="webPageService"
+              [(ngModel)]="service.budget.webPageService.active"
+              (ngModelChange)="service.sumPrice(); showInputs()"
+            />
+          </li>
+
+          <app-panel *ngIf="show" (valuesForm)="takeValuePanel()"></app-panel>
+
+          <li class="list-group-item">
+            <label for="secondCheckbox">
+              Consultoría SEO <br />
+              <b> 300€ </b>
+            </label>
+            <input
+              class="form-check-input checkbox-xl"
+              type="checkbox"
+              name="seoService"
+              [(ngModel)]="service.budget.seoService"
+              (ngModelChange)="service.sumPrice()"
+            />
+          </li>
+
+          <li class="list-group-item">
+            <label for="thirdCheckbox">
+              Campaña Google Ads <br />
+              <b>200€</b></label
+            >
+            <input
+              class="form-check-input checkbox-xl"
+              type="checkbox"
+              name="googleAdsService"
+              [(ngModel)]="service.budget.googleAdsService"
+              (ngModelChange)="service.sumPrice()"
+            />
+          </li>
+        </ul>
+
+        <p>
+          El precio total de este presupuesto es
+          <b> {{ this.service.budget.totalPrice }} € </b>
+        </p>
+        <button type="submit" class="btn">Guardar</button>
+      </form>
+
+      <button
+        routerLink=""
+        class="btn"
+        style="position: absolute; top: 95%; left: 10px"
+      >
+        Volver
+      </button>
+    </div>
+    <div class="col-6 list"><app-budget-list></app-budget-list></div>
+  </div>
 </body>

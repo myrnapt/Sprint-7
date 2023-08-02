@@ -1,13 +1,28 @@
 <div class="mt-5">
-  <h3> Lista de presupuestos </h3>
-  <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Buscar por nombre">
-      <button class="btn"> Buscar </button>
+  <u><h3>Lista de presupuestos</h3></u><br />
+
+  <div class="input-group mb-3 col-6 w-50">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre del presupuesto"
+      [(ngModel)]="searchKeyword"
+      (input)="searchBar()" />
   </div>
-  <button class="btn">Ordenar alfabéticamente</button>
-  <button class="btn">Ordenar por fecha de creación</button>
-  <button class="btn">Reiniciar</button>
-  <ul class="list-group mt-3">
-      <li class="list-group-item"> </li>
+  
+  <button class="btn" (click)="sortAlphabetically()">Ordenar alfabéticamente</button>
+  <button class="btn" (click)="restartOrder()">Reiniciar</button>
+
+  <ul class="list-group mt-3" *ngIf="!showSearchResults">
+    <li class="list-group-item col-6" *ngFor="let budget of budgetArray">
+        <h5> {{ budget.budgetName}} </h5>
+          <p> <i> {{budget.clientName}} </i></p>
+          <p> {{ budget.totalPrice }} </p> 
+    </li>
+  </ul>
+
+
+  <ul class="list-group mt-3" *ngIf="showSearchResults">
+    <li class="list-group-item col-6" *ngFor="let item of searchResults">{{ item.budgetName }}</li>
   </ul>
 </div>

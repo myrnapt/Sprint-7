@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AppService } from '../app.service';
-import { Budget } from '../app.interface';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +9,23 @@ import { Budget } from '../app.interface';
 export class HomeComponent {
   constructor(public service: AppService) {}
 
-  show: boolean = true;
-
+  show: boolean = false;
   showInputs() {
     this.show = !this.show;
   }
 
-  
+  takeValuePanel() {
+    if (
+      this.service.budget.webPageService.numLanguage > 0 &&
+      this.service.budget.webPageService.numPages > 0
+    ) {
+      this.service.budget.totalPrice -=
+        this.service.budget.webPageService.total;
+      this.service.budget.webPageService.total =
+        this.service.changeWebPricing();
+      this.service.budget.totalPrice +=
+        this.service.budget.webPageService.total;
+    }
+  }
+ 
 }

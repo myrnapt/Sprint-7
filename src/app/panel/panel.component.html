@@ -1,24 +1,51 @@
 <form class="container">
   <div id="card">
     <label for="pageNumber"> Número de páginas: </label>
-    <button class="btn1" (click)="service.increaseByPages(+1); service.changeWebPricing()">+</button>
-    <input type="number" id="pageNumber" class="form-control2 mb-2"
-    placeholder="1" [value]="service.budget.webPageService.numPages">
-    <button class="btn1" (click)="service.increaseByPages(-1); service.changeWebPricing()">-</button>
-    <button class='btn2' (click)="modalService.openModal()"> i </button>
+    <button
+      class="btn1"
+      (click)="service.increaseByPages(+1);service.changeWebPricing() ; service.sumPrice()">
+      +
+    </button>
+    
+    <input
+      type="number"
+      id="pageNumber"
+      class="form-control2 mb-2"
+      placeholder="1"
+      [value]="service.budget.webPageService.numPages"/>
+   
+      <button
+      class="btn1"
+      (click)="service.increaseByPages(-1);service.changeWebPricing(); service.sumPrice()">
+      -
+    </button>
+
+    <app-modal class="btn2"></app-modal>
+  
   </div>
+  
   <div id="card">
     <label for="languageNumber"> Número de idiomas: </label>
-    <button class="btn1" (click)="service.increaseByLanguages(+1); service.changeWebPricing()">+</button>
+    <button
+      class="btn1"
+      (click)="service.increaseByLanguages(+1);service.changeWebPricing(); service.sumPrice()">
+      +
+    </button>
+  
     <input
       type="number"
       id="languageNumber"
       class="form-control2 mb-2"
       placeholder="1"
-      [value]="service.budget.webPageService.numLanguage"
-    />
-    <button class="btn1" (click)="service.increaseByLanguages(-1); service.changeWebPricing()">-</button>
-    <button class='btn2' > i </button>
-    
+      [value]="service.budget.webPageService.numLanguage"/>
+   
+      <button
+      class="btn1"
+      (click)="service.increaseByLanguages(-1);service.changeWebPricing(); service.sumPrice()" >
+      -
+    </button>
+
+    <div class="btn2"><app-modal></app-modal></div>
+ 
   </div>
 </form>

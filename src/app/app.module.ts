@@ -21,7 +21,7 @@ import { ModalComponent } from './modal/modal.component';
     BudgetListComponent,
     WelcomeComponent,
     PanelComponent,
-    ModalComponent,
+    ModalComponent
    ],
   imports: [BrowserModule, 
     AppRoutingModule, 
