@@ -8,24 +8,25 @@ import { Budget } from '../app.interface';
   styleUrls: ['./budget-list.component.scss']
 })
 export class BudgetListComponent implements OnInit {
-  
-  constructor(public service: AppService) { }
- 
-  budgetArray: Budget[] = [] ;
-  budgetArrayOriginal: Budget[] = [] ;
+  constructor(public service: AppService) {}
+
+  budgetArray: Budget[] = [];
+  budgetArrayOriginal: Budget[] = [];
   searchKeyword: string = '';
-  searchResults: Budget[] = [] ;
+  searchResults: Budget[] = [];
   showSearchResults = false;
 
-  
   ngOnInit() {
     this.budgetArray = this.service.getList();
     this.budgetArrayOriginal = [...this.budgetArray];
   }
 
   searchBar() {
-    if (this.searchKeyword !== '') {
-      this.searchResults = this.budgetArray.filter(item => item.budgetName.includes(this.searchKeyword));
+    if (this.searchKeyword.trim() !== '') {
+      const searchTermLowerCase = this.searchKeyword.toLowerCase();
+      this.searchResults = this.budgetArray.filter(
+        (item) => item.budgetName.toLowerCase().includes(searchTermLowerCase)
+      );
       this.showSearchResults = true;
     } else {
       this.showSearchResults = false;
@@ -33,10 +34,12 @@ export class BudgetListComponent implements OnInit {
   }
 
   sortAlphabetically() {
-    this.budgetArrayOriginal = [...this.budgetArray]
-    this.budgetArray.sort((a: any, b: any) => a.budgetName.localeCompare(b.budgetName));
+    this.budgetArrayOriginal = [...this.budgetArray];
+    this.budgetArray.sort((a: any, b: any) =>
+      a.budgetName.localeCompare(b.budgetName)
+    );
   }
-  
+
   restartOrder() {
     this.budgetArray = [...this.budgetArrayOriginal];
     this.showSearchResults = false;

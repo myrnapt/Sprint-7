@@ -6,10 +6,27 @@
 
 .list-group-item {
     border: 1px none black;
-    margin-bottom: 10px;
+    margin: 20px;
     border-radius: 15px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    box-shadow: 2px 2px 10px rgb(191, 199, 211);
+    box-shadow: 2px 2px 10px rgb(197, 201, 207);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
+#card {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+
+.form-control2 {
+    border: none;
+    border-radius: 15px;
+    width: 50px;
+    text-align: center;
+}
+

@@ -1,28 +1,75 @@
-<div class="mt-5">
-  <u><h3>Lista de presupuestos</h3></u><br />
+<h3 class="fs-4 mt-3 text-center">PRESUPUESTOS EN CURSO</h3>
+<br />
 
-  <div class="input-group mb-3 col-6 w-50">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Nombre del presupuesto"
-      [(ngModel)]="searchKeyword"
-      (input)="searchBar()" />
+<div class="container">
+  <div class="row">
+  <div class="col input-group mb-3 w-50">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nombre del presupuesto"
+        [(ngModel)]="searchKeyword"
+        (input)="searchBar()"/>
+    </div>
+    <div class="col"><button class="btn" (click)="sortAlphabetically()">
+      Ordenar alfabéticamente
+    </button></div>
+    <div class="col"><button class="btn" (click)="restartOrder()">Reiniciar</button></div>
   </div>
-  
-  <button class="btn" (click)="sortAlphabetically()">Ordenar alfabéticamente</button>
-  <button class="btn" (click)="restartOrder()">Reiniciar</button>
-
-  <ul class="list-group mt-3" *ngIf="!showSearchResults">
-    <li class="list-group-item col-6" *ngFor="let budget of budgetArray">
-        <h5> {{ budget.budgetName}} </h5>
-          <p> <i> {{budget.clientName}} </i></p>
-          <p> {{ budget.totalPrice }} </p> 
-    </li>
-  </ul>
-
-
-  <ul class="list-group mt-3" *ngIf="showSearchResults">
-    <li class="list-group-item col-6" *ngFor="let item of searchResults">{{ item.budgetName }}</li>
-  </ul>
 </div>
+
+<!-- SEARCH BAR -->
+<ul class="list-group mt-3" *ngIf="showSearchResults">
+  <li class="list-group-item" *ngFor="let item of searchResults">
+    <div class="col">
+      <h5>{{ item.budgetName }}</h5>
+      <i> {{ item.clientName }} </i>
+    </div>
+    <div class="col">
+      <h5>Servicios contratados:</h5>
+      <ng-container *ngIf="item.webPageService.active"> 
+        Página web <br>
+      </ng-container>
+      <ng-container *ngIf="item.seoService">
+        SEO <br>
+      </ng-container>
+      <ng-container *ngIf="item.googleAdsService">
+        Google Ads
+      </ng-container>
+    </div>
+    <div class="col"> 
+      <h5>Precio: </h5>  
+      {{ item.totalPrice }} €
+    </div>
+  </li>
+</ul>
+
+
+<!-- BUDGET LIST -->
+<ul class="list-group mt-3" *ngIf="!showSearchResults">
+  <div class="container">
+    <li class="list-group-item" *ngFor="let budget of budgetArray">
+      <div class="col">
+        <h5>{{ budget.budgetName }}</h5>
+        <i> {{ budget.clientName }} </i>
+      </div>
+      <div class="col">
+        <h5>Servicios contratados:</h5>
+        <ng-container *ngIf="budget.webPageService.active"> 
+          Página web <br>
+        </ng-container>
+        <ng-container *ngIf="budget.seoService">
+          SEO <br>
+        </ng-container>
+        <ng-container *ngIf="budget.googleAdsService">
+          Google Ads
+        </ng-container>
+      </div>
+      <div class="col"> 
+        <h5>Precio: </h5>  
+        {{ budget.totalPrice }} €
+      </div>
+    </li>
+  </div>
+</ul>
+

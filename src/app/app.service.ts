@@ -21,7 +21,19 @@ export class AppService {
     totalPrice: 0,
   };
 
-  budgetList: Budget[] = [];
+  budgetList: Budget[] = [{
+    budgetName: 'Prueba',
+    clientName: 'IT Academy',
+    webPageService: {
+      active: true,
+      numPages: 2,
+      numLanguage: 3,
+      total: 680,
+    },
+    seoService: false,
+    googleAdsService: true,
+    totalPrice: 880
+  }];
 
   // PRICE CALCULATIONS
   increaseByPages(value: number) {
@@ -64,10 +76,39 @@ export class AppService {
     }
   }
 
+  show: boolean = false;
+  showInputs() {
+    this.show = !this.show;
+  }
+  
+  serviceError = false
+  nameError= false
+  clientError= false
   // SEND FORM
   onSubmit() {
+
+    if (this.budget.budgetName === '') {
+      this.nameError = !this.nameError
+      return
+    }
+    
+    if (this.budget.clientName === '') {
+      this.clientError = !this.clientError
+      return
+    }
+    
+    if (this.budget.totalPrice === 0) {
+      this.serviceError = !this.serviceError
+      return
+    }
+    
+    else {
+    this.serviceError = false
+    this.nameError = false
+    this.clientError= false
     const newBudget = { ...this.budget };
     this.budgetList.push(newBudget);
+    this.show = false
     this.budget = {
       budgetName: '',
       clientName: '',
@@ -82,8 +123,9 @@ export class AppService {
       totalPrice: 0,
     };
   }
-
-  getList(): Budget[] {
-    return this.budgetList;
   }
+
+getList() {
+  return this.budgetList;
+}
 }

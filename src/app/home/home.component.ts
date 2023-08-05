@@ -9,10 +9,6 @@ import { AppService } from '../app.service';
 export class HomeComponent {
   constructor(public service: AppService) {}
 
-  show: boolean = false;
-  showInputs() {
-    this.show = !this.show;
-  }
 
   takeValuePanel() {
     if (
