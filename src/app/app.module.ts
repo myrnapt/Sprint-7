@@ -5,15 +5,14 @@ import { AppRoutingModule } from './app.routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { BudgetListComponent } from './budget-list/budget-list.component';
-import { HomeComponent } from './home/home.component';
+import { BudgetListComponent } from './components/budget-list/budget-list.component';
+import { HomeComponent } from './components/home/home.component';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { PanelComponent } from './panel/panel.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { PanelComponent } from './components/panel/panel.component';
 
-import { AppService } from './app.service';
-import { ModalComponent } from './modal/modal.component';
-
+import { AppService } from './service/app.service';
 @NgModule({
   declarations: [	
     AppComponent,

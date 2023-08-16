@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
-import { Budget } from '../app.interface';
+import { AppService } from '../../service/app.service';
+import { Budget } from '../../interface/app.interface';
 
 @Component({
   selector: 'app-budget-list',
@@ -8,7 +8,9 @@ import { Budget } from '../app.interface';
   styleUrls: ['./budget-list.component.scss']
 })
 export class BudgetListComponent implements OnInit {
-  constructor(public service: AppService) {}
+
+
+  constructor(private service: AppService) {}
 
   budgetArray: Budget[] = [];
   budgetArrayOriginal: Budget[] = [];

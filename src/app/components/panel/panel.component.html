@@ -3,7 +3,7 @@
     <label for="pageNumber"> Número de páginas: </label>
     <button
       class="btn1"
-      (click)="service.increaseByPages(+1);service.changeWebPricing() ; service.sumPrice()">
+      (click)="increaseByPages(+1);changeWebPricing() ; sumPrice()">
       +
     </button>
     
@@ -12,11 +12,11 @@
       id="pageNumber"
       class="form-control2 mb-2"
       placeholder="1"
-      [value]="service.budget.webPageService.numPages"/>
+      [value]="budget.webPageService.numPages"/>
    
       <button
       class="btn1"
-      (click)="service.increaseByPages(-1);service.changeWebPricing(); service.sumPrice()">
+      (click)="increaseByPages(-1);changeWebPricing(); sumPrice()">
       -
     </button>
 
@@ -28,7 +28,7 @@
     <label for="languageNumber"> Número de idiomas: </label>
     <button
       class="btn1"
-      (click)="service.increaseByLanguages(+1);service.changeWebPricing(); service.sumPrice()">
+      (click)="increaseByLanguages(+1);changeWebPricing(); sumPrice()">
       +
     </button>
   
@@ -37,11 +37,11 @@
       id="languageNumber"
       class="form-control2 mb-2"
       placeholder="1"
-      [value]="service.budget.webPageService.numLanguage"/>
+      [value]="budget.webPageService.numLanguage"/>
    
       <button
       class="btn1"
-      (click)="service.increaseByLanguages(-1);service.changeWebPricing(); service.sumPrice()" >
+      (click)="increaseByLanguages(-1);changeWebPricing(); sumPrice()" >
       -
     </button>
 

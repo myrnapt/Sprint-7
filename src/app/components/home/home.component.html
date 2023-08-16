@@ -30,12 +30,12 @@
             class="form-check-input checkbox-xl"
             type="checkbox"
             name="webPageService"
-            [(ngModel)]="service.budget.webPageService.active"
-            (ngModelChange)="service.sumPrice(); this.service.showInputs()"
+            [(ngModel)]="budget.webPageService.active"
+            (ngModelChange)="sumPrice(); showInputs()"
           />
         </li>
 
-        <app-panel *ngIf="this.service.show" (valuesForm)="takeValuePanel()"></app-panel>
+        <app-panel *ngIf="show" (valuesForm)="takeValuePanel()"></app-panel>
 
         <li class="list-group-item">
           <label for="secondCheckbox">
@@ -50,8 +50,8 @@
             class="form-check-input checkbox-xl"
             type="checkbox"
             name="seoService"
-            [(ngModel)]="service.budget.seoService"
-            (ngModelChange)="service.sumPrice()"
+            [(ngModel)]="budget.seoService"
+            (ngModelChange)="sumPrice()"
           />
         </li>
 
@@ -68,14 +68,14 @@
             class="form-check-input checkbox-xl"
             type="checkbox"
             name="googleAdsService"
-            [(ngModel)]="service.budget.googleAdsService"
-            (ngModelChange)="service.sumPrice()"
+            [(ngModel)]="budget.googleAdsService"
+            (ngModelChange)="sumPrice()"
           />
         </li>
       </ul>
   
 
-      <form (ngSubmit)="this.service.onSubmit()">
+      <form (ngSubmit)="onSubmit()">
         <div class="row mt-3">
           <div class="col">
             <div class="form-floating mb-3">
@@ -83,10 +83,10 @@
                 type="text"
                 class="form-control"
                 name="budgetName"
-                [(ngModel)]="service.budget.budgetName"
+                [(ngModel)]="budget.budgetName"
               />
               <label for="floatingInput"> Nombre del presupuesto </label>
-              <div *ngIf="this.service.nameError">
+              <div *ngIf="nameError">
                 <p class="error">Por favor complete el campo con al menos un caracter</p>
             </div>
             </div>
@@ -97,19 +97,19 @@
                 type="text"
                 class="form-control"
                 name="clientName"
-                [(ngModel)]="service.budget.clientName"
+                [(ngModel)]="budget.clientName"
               />
               <label for="floatingInput"> Nombre del cliente </label>
-              <div *ngIf="this.service.clientError">
+              <div *ngIf="clientError">
                 <p class="error">Por favor complete el campo con al menos un caracter</p>
             </div>
             </div>
           </div>
         </div>
         <p class="fs-4 mt-2 me-3">
-          Precio total: <b> {{ this.service.budget.totalPrice }} € </b>
+          Precio total: <b> {{ budget.totalPrice }} € </b>
         </p>
-        <div *ngIf="this.service.serviceError">
+        <div *ngIf="serviceError">
           <p class="error">Por favor, seleccione al menos un servicio</p>
       </div>
         <button type="submit" class="btn"> ENVIAR </button>
